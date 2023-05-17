@@ -37,12 +37,12 @@ public class PvpCommand {
     // if not in list, add to list
     if(!PvpWhitelist.contains(player)) {
       PvpWhitelist.addPlayer(player);
-      source.sendFeedback(Text.of("PvP for you is now on"), false);
+      source.sendFeedback(() -> Text.literal("PvP for you is now on"), false);
       return 1;
     }
 
     // if already in list, tell player
-    source.sendFeedback(Text.of("You already have PvP on!"), false);
+    source.sendFeedback(() -> Text.literal("You already have PvP on!"), false);
     return 0;
   }
 
@@ -54,12 +54,12 @@ public class PvpCommand {
     // if in list, remove from list
     if(PvpWhitelist.contains(player)) {
       PvpWhitelist.removePlayer(player);
-      source.sendFeedback(Text.of("PvP for you is now off"), false);
+      source.sendFeedback(() -> Text.literal("PvP for you is now off"), false);
       return 1;
     }
 
     // if player isn't in list, tell player
-    source.sendFeedback(Text.of("You already have PvP off!"), false);
+    source.sendFeedback(() -> Text.literal("You already have PvP off!"), false);
     return 0;
   }
 
@@ -68,7 +68,7 @@ public class PvpCommand {
     ServerCommandSource source = ctx.getSource();
     GameProfile player = source.getPlayer().getGameProfile();
 
-    source.sendFeedback(Text.of("PvP for you is " + (PvpWhitelist.contains(player) ? "on" : "off")), false);
+    source.sendFeedback(() -> Text.literal("PvP for you is " + (PvpWhitelist.contains(player) ? "on" : "off")), false);
     return 1;
   }
 
@@ -76,7 +76,7 @@ public class PvpCommand {
   private static int listPlayers(CommandContext<ServerCommandSource> ctx) {
     ServerCommandSource source = ctx.getSource();
 
-    source.sendFeedback(Text.of("Players with PvP on: " + String.join(", ", PvpWhitelist.getPlayers())), false);
+    source.sendFeedback(() -> Text.literal("Players with PvP on: " + String.join(", ", PvpWhitelist.getPlayers())), false);
     return 1;
   }
 }
