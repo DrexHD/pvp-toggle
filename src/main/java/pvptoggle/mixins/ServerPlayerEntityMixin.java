@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import pvptoggle.PvpWhitelist;
 
 @Mixin(ServerPlayerEntity.class)
-public abstract class ServerPlayerEntity_PvpToggleMixin extends PlayerEntity {
+public abstract class ServerPlayerEntityMixin extends PlayerEntity {
 
-    public ServerPlayerEntity_PvpToggleMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
+    public ServerPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile gameProfile) {
         super(world, pos, yaw, gameProfile);
     }
 
