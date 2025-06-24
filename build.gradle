@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
+	id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
 sourceCompatibility = JavaVersion.VERSION_21
@@ -31,6 +32,20 @@ dependencies {
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
+}
+
+publishMods {
+	file = remapJar.archiveFile
+	type = STABLE
+	changelog = providers.environmentVariable("CHANGELOG").getOrElse("No changelog provided")
+
+	displayName = "pvp-toggle ${version.get()}"
+
+	github {
+		accessToken = providers.environmentVariable("GITHUB_TOKEN")
+		repository = providers.environmentVariable("GITHUB_REPOSITORY").getOrElse("DrexHD/pvp-toggle")
+		commitish = providers.environmentVariable("GITHUB_REF_NAME").getOrElse("main")
+	}
 }
 
 processResources {
